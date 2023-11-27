@@ -1,9 +1,6 @@
-<h1>Add new Friend</h1>
-
+<h1>Add New Friend</h1>
+<br>
 <%= render "form", friend: @friend %>
 
 <br>
-
-<div>
-  <%= link_to "Back to friends", friends_path %>
-</div>
+<%= link_to "Back to friends", friends_path, class:"btn btn-dark"  %>
