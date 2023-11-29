@@ -10,6 +10,8 @@ gem "rails", "~> 7.0.7", ">= 7.0.7.2"
 gem "sprockets-rails"
 gem "jquery-rails"
 
+gem 'devise', '~> 4.9', '>= 4.9.3'
+
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
 

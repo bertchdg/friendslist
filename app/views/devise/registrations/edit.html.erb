@@ -1,0 +1,57 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Edit Profile</h4>
+  </div>
+
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field mb-3">
+        <%= f.label :email %>
+        <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+
+      <div class="field mb-2">
+        <%= f.label :Change_Password %><br/>
+        <%= f.password_field :password, class:"form-control", placeholder:"New password - leave blank if you don't want to change it", autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="field mb-3">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm new password", autocomplete: "new-password" %>
+      </div>
+
+      <div class="field mb-3">
+            <b>Enter your current password to save changes<br/></b>
+        <% f.label :current_password %>
+        <%= f.password_field :current_password, class:"form-control", placeholder:"Current password", autocomplete: "current-password" %>
+      </div>
+      <br/>
+      <div class="actions">
+        <%= f.submit "Update", class:'btn btn-secondary' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<br/><br/>
+<div class="card">
+  <div class="card-header">
+    <h5>Cancel my account</h5>
+  </div>
+  <div class="card-body">
+    <h6 class="card-title">Unhappy?</h6>
+    <p class="card-text"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class:'btn btn-danger', method: :delete %></div>
+    </p>
+  </div>
+<br/> <br/>
+<%= link_to "Back", :back, class:'btn btn-dark' %>
+</div>
