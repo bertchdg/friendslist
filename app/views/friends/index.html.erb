@@ -6,18 +6,21 @@
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
       <th scope="col">Twitter</th>
+      <th scope="col">User ID</th>
       <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @friends.each do |friend| %>
-      <tr>
-        <%= render friend %>
-        <td>
-          <%= link_to "View", friend, class:"btn btn-secondary" %> | <%= link_to "Delete", delete_friend_path(friend), method: :delete, class:"btn btn-warning" %>
-        </td>
-      </tr>
+      <% if friend.user == current_user %>
+        <tr>
+          <%= render friend %>
+          <td>
+            <%= link_to "View", friend, class:"btn btn-secondary" %> | <%= link_to "Delete", delete_friend_path(friend), method: :delete, class:"btn btn-warning", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
