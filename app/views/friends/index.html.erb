@@ -1,28 +1,31 @@
-<table class="table table-striped table-bordered table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Twitter</th>
-      <th scope="col">User ID</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @friends.each do |friend| %>
-      <% if friend.user == current_user %>
-        <tr>
-          <%= render friend %>
-          <td>
-            <%= link_to "View", friend, class:"btn btn-secondary" %> | <%= link_to "Delete", delete_friend_path(friend), method: :delete, class:"btn btn-warning", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
-          </td>
-        </tr>
+<% if user_signed_in? %>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Twitter</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friends.each do |friend| %>
+        <% if friend.user == current_user %>
+          <tr>
+            <%= render friend %>
+            <td>
+              <%= link_to "Delete", delete_friend_path(friend), method: :delete, class:"btn btn-warning btn-sm", data: { "turbo-method": :delete, "turbo-confirm": 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
-<hr>
-<%= link_to "New friend", new_friend_path, class:"btn btn-primary" %>
+    </tbody>
+  </table>
+  <hr>
+  <%= link_to "New friend", new_friend_path, class:"btn btn-primary" %>
+<% else %>
+  <h1>Welcome to the Friend List App</h1>
+  <p>Please sign in to access the full functionality of this webapp.</p>
+
+<% end %>

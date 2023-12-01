@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :friends
 
   get 'home/about'
-  root 'home#index'
+  # root 'home#index'
+  root 'friends#index'
   delete 'friends/:id', to: 'friends#destroy', as: "delete_friend"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
